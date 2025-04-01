@@ -1,44 +1,26 @@
 #include <stdio.h>
-
-// Desafio Super Trunfo - Países
-// Tema 2 - Comparação das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de comparação de cartas de cidades. 
-// Siga os comentários para implementar cada parte do desafio.
+#include <math.h>
+#include <stdlib.h>
 
 int main() {
-    // Definição das variáveis para armazenar as propriedades das cidades
-    // Você pode utilizar o código do primeiro desafio
     //VARIÁVEIS DA CARTA 1;
-    char estado_carta_1, codigo_carta_1[3], nome_da_cidade_carta_1[30];
+    char nome_pais_carta_1[30];
     int pontos_turisticos_carta_1;
     unsigned long int populacao_carta_1;
     float area_carta_1, pib_carta_1;
     //VARIÁVEIS DA CARTA 2;
-    char estado_carta_2, codigo_carta_2[3], nome_da_cidade_carta_2[30];
+    char nome_pais_carta_2[30];
     int pontos_turisticos_carta_2;
     unsigned long int populacao_carta_2;
     float area_carta_2, pib_carta_2;
 
-    int MAX_NUMBER = 5;
-    int MIN_NUMBER = 1;
-    
-    // Cadastro das Cartas:
-    // Implemente a lógica para solicitar ao usuário que insira os dados das cidades
-    // utilizando a função scanf para capturar as entradas.
-    // utilize o código do primeiro desafio
+    //int MAX_NUMBER = 5;
+    //int MIN_NUMBER = 1;
 
-    // Exemplo:
-    // printf("Digite o código da cidade: ");
-    // scanf("%s", codigo);
-    // 
-    // (Repita para cada propriedade)
-    printf("\n----- CONFIGURAÇÃO DA CARTA 1: -----\n");
-    printf("Digite o estado da carta: ");
-    scanf(" %c", &estado_carta_1);
-    printf("Digite o código da carta (3 caracteres): ");
-    scanf("%3s", codigo_carta_1);
-    printf("Digite o nome da cidade: ");
-    scanf(" %[^\n]", nome_da_cidade_carta_1);
+    //COLETANDO OS DADOS DO USUÁRIO PARA A CARTA 1
+    printf("\n----- DADOS DO PAÍS 1: -----\n");
+    printf("Digite o nome do país: ");
+    scanf(" %[^\n]", nome_pais_carta_1);
     printf("Digite a população: ");
     scanf("%lu", &populacao_carta_1);
     printf("Digite a área: ");
@@ -48,16 +30,14 @@ int main() {
     printf("Digite o número de pontos turísticos: ");
     scanf("%d", &pontos_turisticos_carta_1);
 
+    //CALCULANDO A DENSIDADE DEMOGRÁFICA PARA A CARTA 1
     float densidade_populacional_1 = (float) populacao_carta_1 / area_carta_1;
-    float pib_per_capita_1 = (pib_carta_1 * (float) pow(10,9)) / (float) populacao_carta_1;
+    //float pib_per_capita_1 = (pib_carta_1 * (float) pow(10,9)) / (float) populacao_carta_1;
     
-    printf("\n----- CONFIGURAÇÃO DA CARTA 2: -----\n");
-    printf("Digite o estado da carta: ");
-    scanf(" %c", &estado_carta_2);
-    printf("Digite o código da carta (3 caracteres): ");
-    scanf("%3s", codigo_carta_2);
-    printf("Digite o nome da cidade: ");
-    scanf(" %[^\n]", nome_da_cidade_carta_2);
+    //COLETANDO OS DADOS DO USUÁRIO PARA A CARTA 2
+    printf("\n----- DADOS DO PAÍS 2: -----\n");
+    printf("Digite o nome do país: ");
+    scanf(" %[^\n]", nome_pais_carta_2);
     printf("Digite a população: ");
     scanf("%lu", &populacao_carta_2);
     printf("Digite a área: ");
@@ -67,99 +47,111 @@ int main() {
     printf("Digite o número de pontos turísticos: ");
     scanf("%d", &pontos_turisticos_carta_2);
 
+    //CALCULANDO A DENSIDADE DEMOGRÁFICA PARA A CARTA 2
     float densidade_populacional_2 = (float) populacao_carta_2 / area_carta_2;
-    float pib_per_capita_2 = (pib_carta_2 * (float) pow(10,9)) / (float) populacao_carta_2;
-    // Comparação de Cartas:
-    // Desenvolva a lógica de comparação entre duas cartas.
-    // Utilize estruturas de decisão como if, if-else para comparar atributos como população, área, PIB, etc.
+    //float pib_per_capita_2 = (pib_carta_2 * (float) pow(10,9)) / (float) populacao_carta_2;
+    
+    //int numeroAleatorio = rand() % (MAX_NUMBER + 1 - MIN_NUMBER) + MIN_NUMBER;
 
-    // Exemplo:
-    // if (populacaoA > populacaoB) {
-    //     printf("Cidade 1 tem maior população.\n");
-    // } else {
-    //     printf("Cidade 2 tem maior população.\n");
-    // }
+    //DESENVOLVENDO O MENU PRINCIPAL COM 5 OPÇÕES DE ATRIBUTOS E 1 OPÇÃO PARA O USUÁRIO SAIR
+    //AQUI O USUÁRIO ESCOLHE O ATRIBUTO QUE DESEJA COMPARAR ENTRE AS DUAS CARTAS
+    int opcao;
+    printf("\n\n----- Escolha um atributo no qual deseja comparar as cartas: -----\n\n");
+    printf("1. PIB\n");
+    printf("2. Densidade Populacional\n");
+    printf("3. População\n");
+    printf("4. Área\n");
+    printf("5. Pontos turísticos\n");
+    printf("6. Sair\n");
+    scanf("%d", &opcao);
 
-    // Exibição dos Resultados:
-    // Após realizar as comparações, exiba os resultados para o usuário.
-    // Certifique-se de que o sistema mostre claramente qual carta venceu e com base em qual atributo.
-
-    // Exemplo:
-    // printf("A cidade vencedora é: %s\n", cidadeVencedora);
-    int numeroAleatorio = rand() % (MAX_NUMBER + 1 - MIN_NUMBER) + MIN_NUMBER;
-
-    if(numeroAleatorio == 1) {
+    //SWITCH COM AS OPÇÕES BASEADA NA ESCOLHA DO USUÁRIO
+    switch (opcao)
+    {
+    case 1:
+        printf("O atributo escolhido foi: PIB\n");
         if (pib_carta_1 > pib_carta_2) {
             getchar();
-            printf("\nCarta 1 - %s: %.2f\n", nome_da_cidade_carta_1, pib_carta_1);
-            printf("\nCarta 2 - %s: %.2f\n", nome_da_cidade_carta_2, pib_carta_2);
-            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_da_cidade_carta_1);
+            printf("\nCarta 1 - %s: %.2f\n", nome_pais_carta_1, pib_carta_1);
+            printf("\nCarta 2 - %s: %.2f\n", nome_pais_carta_2, pib_carta_2);
+            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_pais_carta_1);
         } else if (pib_carta_1 < pib_carta_2) {
             getchar();
-            printf("\nCarta 1 - %s: %.2f\n", nome_da_cidade_carta_1, pib_carta_1);
-            printf("\nCarta 2 - %s: %.2f\n", nome_da_cidade_carta_2, pib_carta_2);
-            printf("\nResultado: Carta 2 (%s) venceu!\n", nome_da_cidade_carta_2);
+            printf("\nCarta 1 - %s: %.2f\n", nome_pais_carta_1, pib_carta_1);
+            printf("\nCarta 2 - %s: %.2f\n", nome_pais_carta_2, pib_carta_2);
+            printf("\nResultado: Carta 2 (%s) venceu!\n", nome_pais_carta_2);
         } else {
             printf("\nAs cartas são iguais!\n");
         }
-    } else if(numeroAleatorio == 2) {
+        break;
+    case 2:
+        printf("O atributo escolhido foi: Densidade Populacional\n");
         if (densidade_populacional_1 < densidade_populacional_2) {
             getchar();
-            printf("\nCarta 1 - %s: %.2f\n", nome_da_cidade_carta_1, densidade_populacional_1);
-            printf("\nCarta 2 - %s: %.2f\n", nome_da_cidade_carta_2, densidade_populacional_2);
-            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_da_cidade_carta_1);
+            printf("\nCarta 1 - %s: %.2f\n", nome_pais_carta_1, densidade_populacional_1);
+            printf("\nCarta 2 - %s: %.2f\n", nome_pais_carta_2, densidade_populacional_2);
+            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_pais_carta_1);
         } else if (densidade_populacional_1 > densidade_populacional_2) {
             getchar();
-            printf("\nCarta 1 - %s: %.2f\n", nome_da_cidade_carta_1, densidade_populacional_1);
-            printf("\nCarta 2 - %s: %.2f\n", nome_da_cidade_carta_2, densidade_populacional_2);
-            printf("\nResultado: Carta 2 (%s) venceu!\n", nome_da_cidade_carta_2);
+            printf("\nCarta 1 - %s: %.2f\n", nome_pais_carta_1, densidade_populacional_1);
+            printf("\nCarta 2 - %s: %.2f\n", nome_pais_carta_2, densidade_populacional_2);
+            printf("\nResultado: Carta 2 (%s) venceu!\n", nome_pais_carta_2);
         } else {
             printf("\nAs cartas são iguais!\n");
         }
-    } else if(numeroAleatorio == 3) {
+        break;
+    case 3:
+        printf("O atributo escolhido foi: População\n");
         if (populacao_carta_1 > populacao_carta_2) {
             getchar();
-            printf("\nCarta 1 - %s: %lu\n", nome_da_cidade_carta_1, populacao_carta_1);
-            printf("\nCarta 2 - %s: %lu\n", nome_da_cidade_carta_2, populacao_carta_2);
-            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_da_cidade_carta_1);
+            printf("\nCarta 1 - %s: %lu\n", nome_pais_carta_1, populacao_carta_1);
+            printf("\nCarta 2 - %s: %lu\n", nome_pais_carta_2, populacao_carta_2);
+            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_pais_carta_1);
         } else if (populacao_carta_1 < populacao_carta_2) {
             getchar();
-            printf("\nCarta 1 - %s: %lu\n", nome_da_cidade_carta_1, populacao_carta_1);
-            printf("\nCarta 2 - %s: %lu\n", nome_da_cidade_carta_2, populacao_carta_2);
-            printf("\nResultado: Carta 2 (%s) venceu!\n", nome_da_cidade_carta_2);
+            printf("\nCarta 1 - %s: %lu\n", nome_pais_carta_1, populacao_carta_1);
+            printf("\nCarta 2 - %s: %lu\n", nome_pais_carta_2, populacao_carta_2);
+            printf("\nResultado: Carta 2 (%s) venceu!\n", nome_pais_carta_2);
         } else {
             printf("\nAs cartas são iguais!\n");
         }
-    } else if(numeroAleatorio == 4) {
+        break;
+    case 4:
+        printf("O atributo escolhido foi: Área\n");
         if (area_carta_1 > area_carta_2) {
             getchar();
-            printf("\nCarta 1 - %s: %.2f\n", nome_da_cidade_carta_1, area_carta_1);
-            printf("\nCarta 2 - %s: %.2f\n", nome_da_cidade_carta_2, area_carta_2);
-            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_da_cidade_carta_1);
+            printf("\nCarta 1 - %s: %.2f\n", nome_pais_carta_1, area_carta_1);
+            printf("\nCarta 2 - %s: %.2f\n", nome_pais_carta_2, area_carta_2);
+            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_pais_carta_1);
         } else if (area_carta_1 < area_carta_2) {
             getchar();
-            printf("\nCarta 1 - %s: %.2f\n", nome_da_cidade_carta_1, area_carta_1);
-            printf("\nCarta 2 - %s: %.2f\n", nome_da_cidade_carta_2, area_carta_2);
-            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_da_cidade_carta_1);
+            printf("\nCarta 1 - %s: %.2f\n", nome_pais_carta_1, area_carta_1);
+            printf("\nCarta 2 - %s: %.2f\n", nome_pais_carta_2, area_carta_2);
+            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_pais_carta_1);
         } else {
             printf("\nAs cartas são iguais!\n");
         }
-    } else if(numeroAleatorio == 5) {
-        if (pib_per_capita_1 > pib_per_capita_2) {
+        break;
+    case 5:
+        printf("O atributo escolhido foi: Pontos Turísticos\n");
+        if (pontos_turisticos_carta_1 > pontos_turisticos_carta_2) {
             getchar();
-            printf("\nCarta 1 - %s: %.2f\n", nome_da_cidade_carta_1, pib_carta_1);
-            printf("\nCarta 2 - %s: %.2f\n", nome_da_cidade_carta_2, pib_carta_2);
-            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_da_cidade_carta_1);
-        } else if (pib_per_capita_1 < pib_per_capita_2) {
+            printf("\nCarta 1 - %s: %.2f\n", nome_pais_carta_1, pib_carta_1);
+            printf("\nCarta 2 - %s: %.2f\n", nome_pais_carta_2, pib_carta_2);
+            printf("\nResultado: Carta 1 (%s) venceu!\n", nome_pais_carta_1);
+        } else if (pontos_turisticos_carta_1 < pontos_turisticos_carta_2) {
             getchar();
-            printf("\nCarta 1 - %s: %.2f\n", nome_da_cidade_carta_1, pib_carta_1);
-            printf("\nCarta 2 - %s: %.2f\n", nome_da_cidade_carta_2, pib_carta_2);
-            printf("\nResultado: Carta 2 (%s) venceu!\n", nome_da_cidade_carta_2);
+            printf("\nCarta 1 - %s: %.2f\n", nome_pais_carta_1, pib_carta_1);
+            printf("\nCarta 2 - %s: %.2f\n", nome_pais_carta_2, pib_carta_2);
+            printf("\nResultado: Carta 2 (%s) venceu!\n", nome_pais_carta_2);
         } else {
             printf("\nAs cartas são iguais!\n");
         }
-    } else {
-        printf("Número aleatório inválido.\n");
+        break;
+    case 6:
+        printf("Saindo do programa...\n");
+        return 0;
+    default:
+        printf("Opção inválida. Tente novamente.\n");
     }
-    return 0;
 }
